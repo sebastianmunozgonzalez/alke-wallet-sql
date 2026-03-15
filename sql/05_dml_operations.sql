@@ -1,5 +1,3 @@
-USE AlkeWallet;
-
 -- DML 1: MODIFICAR CORREO DE UN USUARIO
 
 -- Ver estado ANTES del cambio
@@ -7,7 +5,7 @@ SELECT userid, nombre, correo_electronico
 FROM usuario
 WHERE userid = 1;
 
-START TRANSACTION;
+BEGIN;
 
 UPDATE usuario
 SET correo_electronico = 'carlos_actualizado@email.com'
@@ -26,7 +24,7 @@ COMMIT;
 SELECT * FROM transaccion
 WHERE transactionid = 6;
 
-START TRANSACTION;
+BEGIN;
 
 DELETE FROM transaccion
 WHERE transactionid = 6;

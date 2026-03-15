@@ -1,5 +1,3 @@
-USE AlkeWallet;
-
 -- INSERTAR MONEDAS
 INSERT INTO moneda (currencyname, currencysymbol) VALUES ('Peso Chileno', 'CLP');
 INSERT INTO moneda (currencyname, currencysymbol) VALUES ('Dólar',        'USD');
