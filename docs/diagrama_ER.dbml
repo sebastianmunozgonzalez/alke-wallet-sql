@@ -1,0 +1,27 @@
+Project AlkeWallet {
+  database_type: 'MySQL'
+  Note: 'Base de datos relacional para sistema de billetera virtual'
+}
+
+Table usuario {
+  userid             int           [pk, increment, note: 'Identificador único del usuario']
+  nombre             varchar(100)  [not null, note: 'Nombre completo del usuario']
+  correo_electronico varchar(100)  [not null, unique, note: 'Email único del usuario']
+  contraseña         varchar(255)  [not null, note: 'Contraseña del usuario']
+  saldo              decimal(15,2) [not null, default: 0, note: 'Saldo disponible']
+}
+
+Table moneda {
+  currencyid     int          [pk, increment, note: 'Identificador único de moneda']
+  currencyname   varchar(50)  [not null, note: 'Nombre de la moneda']
+  currencysymbol varchar(5)   [not null, note: 'Símbolo de la moneda']
+}
+
+Table transaccion {
+  transactionid   int           [pk, increment, note: 'Identificador único de transacción']
+  senderuserid    int           [not null, ref: > usuario.userid, note: 'Usuario que envía']
+  receiveruserid  int           [not null, ref: > usuario.userid, note: 'Usuario que recibe']
+  importe         decimal(15,2) [not null, note: 'Monto de la transacción']
+  transactiondate datetime      [default: 'CURRENT_TIMESTAMP', note: 'Fecha y hora']
+  currencyid      int           [not null, ref: > moneda.currencyid, note: 'Moneda usada']
+}
